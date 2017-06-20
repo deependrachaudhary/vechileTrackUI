@@ -1,0 +1,116 @@
+
+<div style="width:79.2%;background-color: #F0FFFF" class="container ">
+    <div class="row">
+      <div class="col-md-4">
+        <br>
+                
+        <table class="table-condensed">
+          <tr>
+            <td><label>VEHICLE MAKE <label style="color: red">*</label></label></td>
+            <td><input type="text"class="form-control" placeholder="eg. Honda " [(ngModel)]="vehiclePost.vehicle_make"></td>
+          </tr>
+          <tr>
+            <td><label>VEHICLE MODEL <label style="color: red">*</label></label></td>
+            <td><input type="text"class="form-control" placeholder="eg. Accord " [(ngModel)]="vehiclePost.vehicle_model"></td>
+          </tr>
+          <tr>
+            <td><label>VEHICLE YEAR <label style="color: red">*</label></label></td>
+            <td><input type="text" class="form-control" placeholder="eg. 2011 " [(ngModel)]="vehiclePost.vehicle_year"></td>
+          </tr>
+          <tr>
+            <td><label>VEHICLE COLOR <label style="color: red">*</label></label></td>
+            <td><input type="text"class="form-control" placeholder="eg. Black " [(ngModel)]="vehiclePost.vehicle_color"></td>
+          </tr>
+          <tr>
+            <td><label>VEHICLE STATUS <label style="color: red">*</label></label></td>
+            <td><input type="text"class="form-control" placeholder="eg. Active" [(ngModel)]="vehiclePost.vehicle_status"></td>
+          </tr>
+          <tr>
+            <td><label>VEHICLE VIN <label style="color: red">*</label></label></td>
+            <td><input type="text"class="form-control" placeholder="eg. ABC214SS" [(ngModel)]="vehiclePost.vehicle_vin"></td>
+          </tr>
+          <tr>
+            <td><label>VEHICLE TYPE <label style="color: red">*</label></label></td>
+            <td><input type="text"class="form-control" placeholder="eg. Sedan" [(ngModel)]="vehiclePost.vehicle_type"></td>
+          </tr>
+          <!--<input class="btn btn-danger" value="Create" (click)="postVehicle()" >-->
+          <button class="btn btn-primary btn-lg" (click)="postVehicle()">Create</button>
+        </table>
+
+      </div>
+       <div class="col-md-8">
+       <div style="float: right">
+         <table>
+           <td>
+              <label>SearchBy</label>
+               <select [(ngModel)]="searchBy">
+                <option value="id">Id</option>-->
+                <option value="make">make</option>
+               </select>
+           </td>
+           <td>
+             <input  type="search" placeholder="searchByMake"[(ngModel)]="vehicle_make"  (ngModelChange)="getVehicleByMake(vehicle_make)" *ngIf="searchBy == 'make'" >
+             <input  type="search" placeholder="searchById"[(ngModel)]="id"  (ngModelChange)="getVehicleId(id)" *ngIf="searchBy == 'id'">
+           </td>
+         </table>
+       </div>
+          <br>
+      <table  class="table table-hover table-condensed">
+        <tr class="info">
+            <th>ID</th>
+            <th>MAKE</th>
+            <th>MODEL</th>
+            <th>YEAR</th>
+            <th>COLOR</th>
+            <th>STATUS</th>
+            <th>VIN #</th>
+            <th>TYPE</th>
+            <th>REMOVE</th>
+            <th>EDIT</th>
+        </tr>
+        <tr *ngFor ="let vehicle of vehicleList">
+            <td>{{vehicle.id}}</td>
+            <td>{{vehicle.vehicle_make}}</td>
+            <td>{{vehicle.vehicle_model}}</td>
+            <td>{{vehicle.vehicle_year}}</td>
+            <td>{{vehicle.vehicle_color}}</td>
+            <td>{{vehicle.vehicle_status}}</td>
+            <td>{{vehicle.vehicle_vin}}</td>
+            <td>{{vehicle.vehicle_type}}</td>
+            <td width="50px"><button class="btn btn-danger btn-xs" (click)="deleteVehicle(vehicle.id)">Remove</button></td>
+            <td width="50px"><button class="btn btn-primary btn-xs" (click)="putButton(vehicle)">Edit</button></td>
+        </tr>
+</table>
+<table  class="table table-condensed" *ngIf="edit">
+         <tr class="success" >
+            <th >ID</th>
+            <th>MAKE</th>
+            <th>MODEL</th>
+            <th>YEAR</th>
+            <th>COLOR</th>
+            <th>STATUS</th>
+            <th>VIN #</th>
+            <th>TYPE</th>
+         </tr>
+  <tr class="success">
+      <td><input type="text"class="form-control" [(ngModel)]="vehiclePost.id" disabled ></td>
+      <td><input type="text"class="form-control" [(ngModel)]="vehiclePost.vehicle_make"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="vehiclePost.vehicle_model"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="vehiclePost.vehicle_year"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="vehiclePost.vehicle_color"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="vehiclePost.vehicle_status"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="vehiclePost.vehicle_vin"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="vehiclePost.vehicle_type"></td>      
+  </tr>
+  <tr>
+    <td><button class="btn btn-primary btn-lg " (click)="putVehicle()">Update</button></td>
+    <td><button class="btn btn-danger btn-lg" (click)="cancleButton()">Cancel</button></td>
+  </tr>
+ 
+</table >
+<br>
+  </div>
+    </div>
+</div>
+
+

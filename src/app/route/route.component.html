@@ -1,0 +1,95 @@
+
+<div style="width:79.2%;background-color: #F0FFFF" class="container ">
+    <div class="row">
+      <div class="col-md-4">
+        <br>
+      
+        <table class="table-condensed">
+          <tr>
+            <td><label>START CITY <label style="color: red">*</label></label></td>
+            <td><input type="text"class="form-control" placeholder="eg. Boston " [(ngModel)]="routePost.startCity"></td>
+          </tr>
+          <tr>
+            <td><label>START TIME<label style="color: red">*</label></label></td>
+            <td><input type="text"class="form-control" placeholder="eg.12:00 " [(ngModel)]="routePost.startTime"></td>
+          </tr>
+          <tr>
+            <td><label>END TIME <label style="color: red">*</label></label></td>
+            <td><input type="text" class="form-control" placeholder="eg.10:00 " [(ngModel)]="routePost.endTime"></td>
+          </tr>
+          <tr>
+            <td><label>END DESTINATION<label style="color: red">*</label></label></td>
+            <td><input type="text"class="form-control" placeholder="eg. New York " [(ngModel)]="routePost.endDestination"></td>
+          </tr>
+           <button class="btn btn-primary btn-lg" value="Create" (click)="postRoute()">Create</button>
+        </table>
+
+      </div>
+       <div class="col-md-8">
+          <div style="float: right">
+         <table>
+           <td>
+              <label>SearchBy</label>
+               <select [(ngModel)]="searchBy">
+                <option value="city">City</option>
+                <option value="Dest">Dest</option>
+               </select>
+           </td>
+           <td>
+             <input  type="search" placeholder="searchByDest"[(ngModel)]="Dest"  (ngModelChange)="getByDestionation(Dest)" *ngIf="searchBy == 'Dest'" >
+             <input  type="search" placeholder="searchByCity"[(ngModel)]="city"  (ngModelChange)="getByCity(city)" *ngIf="searchBy == 'city'">
+           </td>
+         </table>
+       </div>
+         <br>
+      <table  class="table table-hover table-condensed">
+        <tr class="success">
+          <th>ID</th>
+          <th>START CITY</th>
+          <th>DESTINATION</th>
+          <th>START TIME</th>
+          <th>END TIME</th>
+          <th>ROUTE NAME</th>
+          <th>REMOVE</th>
+          <th>EDIT</th>
+        </tr>
+        <tr *ngFor ="let route of routeList">
+          <td>{{route.id}}</td>
+          <td>{{route.startCity}}</td>
+          <td>{{route.endDestination}}</td>
+          <td>{{route.startTime}}</td>
+          <td>{{route.endTime}}</td>
+          <td>{{route.routeName}}</td>
+          <td width="50px"><button class="btn btn-danger btn-xs" (click)="deleteroute(route.id)">Remove</button></td>
+          <td width="50px"><button class="btn btn-primary btn-xs" (click)="putButton(route)">Edit</button></td>
+        </tr>
+</table>
+<table class="table  table-condensed" *ngIf="edit">
+  <tr class="success">
+          <th>ID</th>
+          <th>START CITY</th>
+          <th>DESTINATION</th>
+          <th>START TIME</th>
+          <th>END TIME</th>
+          <th>ROUTE NAME</th>
+        
+        </tr>
+  <tr class="success">
+      <td><input type="text"class="form-control" [(ngModel)]="routePost.id" disabled ></td>
+      <td><input type="text"class="form-control" [(ngModel)]="routePost.startCity"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="routePost.endDestination"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="routePost.startTime"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="routePost.endTime"></td>
+      <td><input type="text"class="form-control" [(ngModel)]="routePost.routeName"disabled></td>     
+  </tr>
+  <tr>
+    <td><button class="btn btn-primary btn-lg " (click)="putRoute()">Update</button></td>
+    <td><button class="btn btn-danger btn-lg" (click)="cancleButton()">Cancel</button></td>
+  </tr>
+</table >
+<br>
+  </div>
+    </div>
+</div>
+
+
